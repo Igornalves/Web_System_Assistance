@@ -61,3 +61,16 @@ docker exec -it my-database mysql -u root -p
 docker-compose up -d
 ```
 
+- URL da requisicao para a documentacao do Swagger 
+
+```
+http://localhost:8080/swagger-ui.html
+```
+
+- Explicando que no application.properties, você pode configurar o Springdoc para servir a documentação da API:
+
+```
+springdoc.api-docs.enabled=true
+springdoc.swagger-ui.enabled=true
+```
+
