@@ -48,3 +48,15 @@ docker run -d --name my-database -p 3306:3306 my-mysql-image
 ```bash
 docker ps -a
 ```
+
+- Apagar a images do Docker 
+
+```bash
+docker rmi -f <id-conteiner>
+```
+
+- Acessar o banco de dados pelo docker
+
+```bash
+docker exec -it my-database-project mysql -u root -p
+```
