@@ -13,6 +13,7 @@ public class CustomerService {
     private static final String Via_CEP_Url = "https://viacep.com.br/ws/64060170/json/";
 
     public Object buscarEnderecoPorCep(String cep) {
+        @SuppressWarnings("deprecation")
         String url = UriComponentsBuilder.fromHttpUrl(Via_CEP_Url)
                                         .buildAndExpand(cep)
                                         .toUriString();
