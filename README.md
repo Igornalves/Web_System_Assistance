@@ -48,3 +48,16 @@ docker run -d --name my-database -p 3306:3306 my-mysql-image
 ```bash
 docker ps -a
 ```
+
+- Usando para acessa o MySQL dentro do Terminal do docker
+
+```bash
+docker exec -it my-database mysql -u root -p
+```
+
+- Comando para criar o docker-compose 
+
+```bash
+docker-compose up -d
+```
+
