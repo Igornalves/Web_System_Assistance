@@ -91,6 +91,12 @@ docker build -t assistenciawebsistema .
 docker run -p 8080:8080 assistenciawebsistema
 ```
 
+- Fazendo um Rebuild do projeto 
+
+```bash
+docker build -t assistenciawebsistema:latest .
+```
+
 - Explicando que no application.properties, você pode configurar o Springdoc para servir a documentação da API:
 
 ```bash
