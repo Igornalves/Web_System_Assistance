@@ -1,19 +1,38 @@
-version: '3.9'
-
+version: "3.9"
 services:
-  mysql:
-    image: mysql:latest
-    container_name: my-database
+  app:
+    image: assistenciawebsistema:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "8080:8080"
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_APPLICATION_NAME: assistenciawebsistema
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/assistenciaweb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+      SPRING_JPA_SHOW_SQL: "false"
+      SPRINGDOC_API_DOCS_ENABLED: "true"
+      SPRINGDOC_SWAGGER_UI_ENABLED: "true"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-container
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: assistenciaweb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     volumes:
-      - mysql_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
 volumes:
-  mysql_data:
-    driver: local
+  db_data:

@@ -28,7 +28,7 @@ Utilizamos no Projeto as seguintes tecnologias para fazer a API Back-end de tal 
 
 ## comandos para usar no Docker no projeto completo 
 
-```
+```bash
  docker run -d --name my-database-project --env-file .env -p 3306:3306 mysql:latest 
 ```
 
@@ -61,15 +61,39 @@ docker exec -it my-database mysql -u root -p
 docker-compose up -d
 ```
 
+- Iniciar os Serviços: Execute o comando:
+
+```bash
+docker-compose up --build
+```
+
 - URL da requisicao para a documentacao do Swagger 
 
-```
+```bash
 http://localhost:8080/swagger-ui.html
+```
+
+- URL normal da aplicacao 
+
+```bash
+http://localhost:8080/
+```
+
+- Construir a Imagem Docker: Execute o comando abaixo no terminal onde está o Dockerfile:
+
+```bash
+docker build -t assistenciawebsistema .
+```
+
+- Executar o Container: Execute o seguinte comando para rodar o container:
+
+```bash
+docker run -p 8080:8080 assistenciawebsistema
 ```
 
 - Explicando que no application.properties, você pode configurar o Springdoc para servir a documentação da API:
 
-```
+```bash
 springdoc.api-docs.enabled=true
 springdoc.swagger-ui.enabled=true
 ```
