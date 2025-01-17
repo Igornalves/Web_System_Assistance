@@ -1,38 +1,40 @@
-version: "3.9"
+version: '3.8'
 services:
   app:
-    image: assistenciawebsistema:latest
+    image: openjdk:17-jdk-slim
+    container_name: spring-boot-app
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    volumes:
+      - ./target/app.jar:/app.jar
+    command: ["java", "-jar", "/app.jar"]
     environment:
-      SPRING_APPLICATION_NAME: assistenciawebsistema
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/assistenciaweb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_APPLICATION_NAME: ${SPRING_APPLICATION_NAME}
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
-      SPRING_JPA_SHOW_SQL: "false"
-      SPRINGDOC_API_DOCS_ENABLED: "true"
-      SPRINGDOC_SWAGGER_UI_ENABLED: "true"
+      SPRING_JPA_SHOW_SQL: ${SPRING_JPA_SHOW_SQL}
+      SPRINGDOC_API_DOCS_ENABLED: ${SPRINGDOC_API_DOCS_ENABLED}
+      SPRINGDOC_SWAGGER_UI_ENABLED: ${SPRINGDOC_SWAGGER_UI_ENABLED}
     depends_on:
-      - db
+      - mysql
 
-  db:
-    image: mysql:8.0
-    container_name: mysql-container
+  mysql:
+    image: mysql:latest
+    container_name: mysql
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: assistenciaweb
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
-      - db_data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
 
 volumes:
-  db_data:
+  mysql-data:

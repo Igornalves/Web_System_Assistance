@@ -38,6 +38,12 @@ Utilizamos no Projeto as seguintes tecnologias para fazer a API Back-end de tal 
 docker build -t my-mysql-image .
 ```
 
+- Cada vez que você altera o código da aplicação, precisa rebuildar a imagem com:
+
+```bash
+docker-compose build
+```
+
 - Rodar um container baseado na imagem criada:
 
 ```bash
@@ -104,3 +110,15 @@ springdoc.api-docs.enabled=true
 springdoc.swagger-ui.enabled=true
 ```
 
+- Comandos para Subir os Ambientes
+- Para Desenvolvimento: Use o arquivo .env.dev para carregar as variáveis de ambiente:
+
+```bash
+docker-compose --env-file .env.dev up
+```
+
+- Para Produção: Use o arquivo .env.prod - - para carregar as variáveis de ambiente:
+
+```bash
+docker-compose --env-file .env.prod up
+```
