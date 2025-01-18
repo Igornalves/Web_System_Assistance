@@ -1,0 +1,41 @@
+version: '3.8'  # Versão do Docker Compose, definindo a compatibilidade e sintaxe do arquivo.
+
+services:
+  app:
+    image: openjdk:17  # A imagem Docker que será utilizada para rodar a aplicação Spring Boot. Está utilizando a versão 17 do OpenJDK.
+    container_name: spring-boot-app  # Nome do contêiner que será criado para a aplicação.
+    build:
+      context: .  # Define o diretório atual como contexto de build.
+      dockerfile: Dockerfile  # O arquivo Dockerfile que será usado para construir a imagem personalizada, caso não use a imagem diretamente.
+    ports:
+      - "4425:8080"  # Mapeia a porta 8080 do contêiner para a porta 4425 da máquina host, permitindo o acesso à aplicação.
+    volumes:
+      - ./target/assistenciawebsistema-0.0.1-SNAPSHOT.jar:/app.jar  # Monta o arquivo JAR gerado pelo Maven para dentro do contêiner.
+    command: ["java", "-jar", "/app.jar"]  # Comando para rodar a aplicação Java dentro do contêiner, passando o JAR como parâmetro.
+    environment:
+      SPRING_APPLICATION_NAME: ${SPRING_APPLICATION_NAME}  # Define a variável de ambiente SPRING_APPLICATION_NAME a partir do arquivo .env (se houver).
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}  # URL de conexão com o banco de dados (provavelmente configurado em .env).
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}  # Nome de usuário para acesso ao banco de dados.
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}  # Senha para o banco de dados.
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver  # O driver JDBC para MySQL, utilizado pelo Spring Boot para se conectar ao banco.
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}  # Definindo como o Hibernate irá lidar com a criação do esquema de banco (ex: update, create).
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect  # Define o dialeto do Hibernate para MySQL, permitindo que o Spring entenda a estrutura do banco de dados.
+      SPRING_JPA_SHOW_SQL: ${SPRING_JPA_SHOW_SQL}  # Configura para exibir as SQLs no log do Spring Boot (geralmente configurado para true em desenvolvimento).
+      SPRINGDOC_API_DOCS_ENABLED: ${SPRINGDOC_API_DOCS_ENABLED}  # Habilita ou desabilita a geração de documentação API com o SpringDoc.
+      SPRINGDOC_SWAGGER_UI_ENABLED: ${SPRINGDOC_SWAGGER_UI_ENABLED}  # Habilita ou desabilita o Swagger UI para a visualização da documentação da API.
+    depends_on:
+      - mysql  # Define que o serviço `app` depende do serviço `mysql`, garantindo que o banco de dados esteja disponível antes da aplicação iniciar.
+
+  mysql:
+    image: mysql:9.0  # A imagem Docker utilizada para o MySQL. A versão 9.0 foi especificada, mas pode ser ajustada se necessário.
+    container_name: my-database-assistenciaweb  # Nome do contêiner para o banco de dados MySQL.
+    ports:
+      - "3307:3306"  # Mapeia a porta 3306 do MySQL no contêiner para a porta 3307 da máquina host. Isso permite a conexão com o banco de dados via porta 3307 na máquina.
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}  # Define a senha do usuário root do MySQL.
+      MYSQL_DATABASE: ${MYSQL_DATABASE}  # Define o nome do banco de dados que será criado ao iniciar o MySQL.
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persiste os dados do MySQL em um volume Docker para garantir que os dados não sejam perdidos quando o contêiner for removido.
+
+volumes:
+  mysql-data:  # Define um volume persistente chamado mysql-data, que é utilizado para armazenar os dados do MySQL.
