@@ -15,7 +15,7 @@ public class Rotas {
 
     @GetMapping("/")
     public String GetRota(){
-        return "Olá mundo";
+        return "Olá coisas novas";
     }
 
     @GetMapping("/cep/{cep}")
