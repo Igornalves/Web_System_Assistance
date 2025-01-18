@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copia o arquivo JAR gerado do Spring Boot para dentro do contêiner
-COPY target/app.jar app.jar
+COPY target/assistenciawebsistema-0.0.1-SNAPSHOT.jar app.jar
 
 # Expõe a porta 8080 para acessar a aplicação Spring Boot
 EXPOSE 8080

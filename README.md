@@ -58,7 +58,7 @@ docker ps -a
 - Usando para acessa o MySQL dentro do Terminal do docker
 
 ```bash
-docker exec -it my-database mysql -u root -p
+docker exec -it mysql mysql -u root -p
 ```
 
 - Comando para criar o docker-compose 
@@ -122,3 +122,23 @@ docker-compose --env-file .env.dev up
 ```bash
 docker-compose --env-file .env.prod up
 ```
+
+- Execute o comando abaixo no diretório do projeto para verificar se o JAR é gerado corretamente:
+
+```bash
+./mvnw clean package
+```
+
+- Após o comando acima, o JAR deve ser gerado em target/. Teste localmente:
+
+```bash
+java -jar target/assistenciawebsistema-0.0.1-SNAPSHOT.jar
+```
+
+- O Maven já executa uma limpeza automática do diretório target ao rodar o comando ./mvnw clean package, mas você pode garantir a remoção manual:
+
+```bash
+./mvnw clean
+```
+
+
