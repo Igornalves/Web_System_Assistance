@@ -140,5 +140,14 @@ java -jar target/assistenciawebsistema-0.0.1-SNAPSHOT.jar
 ```bash
 ./mvnw clean
 ```
+- Construir a imagem:
 
+```bash
+docker build -t spring-boot-app .
+```
 
+- Rodar o contêiner:
+
+```bash
+docker run --env-file .env.prod -p 4425:8080 --name spring-boot-app spring-boot-app
+```
