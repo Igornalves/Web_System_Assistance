@@ -1,4 +1,4 @@
-package com.maizenatv.assistenciawebsistema.entity;
+package com.maizenatv.assistenciawebsistema.models;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="users")
+@Table(name="clients")
 public class Clientes {
 
     @Id
