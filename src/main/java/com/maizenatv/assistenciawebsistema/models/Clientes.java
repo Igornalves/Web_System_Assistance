@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,5 +37,8 @@ public class Clientes {
     private int cnpf; 
 
     @CreationTimestamp
-    private LocalDateTime dataDeCriacao;
+    private LocalDateTime created_at;
+
+    @UpdateTimestamp
+    private LocalDateTime updated_at;
 }
