@@ -32,9 +32,7 @@ public class Clientes {
 
     private int numeroDeTelefone; 
 
-    private int cpf;
-
-    private int cnpf; 
+    private int cpf_cnpj;
 
     @CreationTimestamp
     private LocalDateTime created_at;
