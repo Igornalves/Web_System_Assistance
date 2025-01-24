@@ -6,10 +6,14 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -21,7 +25,7 @@ import lombok.Data;
 public class Clientes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID) // Você pode usar outras estratégias, se necessário
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String nome; 
@@ -30,9 +34,20 @@ public class Clientes {
     @Email(message = "o campo deve ter um email valido")
     private String email;
 
-    private int numeroDeTelefone; 
+    private String telefone; 
 
-    private int cpf_cnpj;
+    @NotBlank(message = "Esse campo e obrigatorio")
+    private String cpf_cnpj;
+
+    @NotBlank(message = "Esse campo e obrigatorio")
+    private String cep; 
+
+    private String endereco;
+
+    @Lob
+    @Basic(fetch = FetchType.LAZY) 
+    @Column(nullable = true)
+    private byte[] documentacao; 
 
     @CreationTimestamp
     private LocalDateTime created_at;
