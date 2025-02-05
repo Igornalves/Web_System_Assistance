@@ -59,6 +59,8 @@ docker ps -a
 
 ```bash
 docker exec -it mysql mysql -u root -p
+
+docker exec -it my-database-assistenciaweb mysql -u root -p
 ```
 
 - Command to create docker-compose

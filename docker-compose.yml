@@ -6,7 +6,7 @@ services:
     container_name: spring-boot-app  # Nome do contêiner que será criado para a aplicação.
     build:
       context: .  # Define o diretório atual como contexto de build.
-      dockerfile: Dockerfile  # O arquivo Dockerfile que será usado para construir a imagem personalizada, caso não use a imagem diretamente.
+      dockerfile: docker/dockerfile.app  # O arquivo Dockerfile que será usado para construir a imagem personalizada, caso não use a imagem diretamente.
     ports:
       - "4425:8080"  # Mapeia a porta 8080 do contêiner para a porta 4425 da máquina host, permitindo o acesso à aplicação.
     volumes:
