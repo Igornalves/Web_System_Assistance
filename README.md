@@ -1,14 +1,14 @@
-# Projeto Sistema Assistencia Tecnica
+# Technical Assistance System Project
 
-Esse Projeto Tem como Intuito de Cria um sistema para ordem de serviço para assistencias tecnicas de forma conjunta e total, para ajudar os tecnicos a emitir seus serviços para empresas e outros 
+This Project Aims to Create a Service Order System for Technical Assistance in a Joint and Complete Way, to Help Technicians Issue Their Services to Companies and Others
 
-## Tecnologias Utilizadas 
+## Technologies Used
 
-Utilizamos no Projeto as seguintes tecnologias para fazer a API Back-end de tal sistema
+We used the following technologies in the Project to make the Back-end API of such system
 
 <div align="left">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" width="100" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" width="90"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" width="90" />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/hibernate/hibernate-original.svg" width="90"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" width="90"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" width="90"/>
@@ -18,135 +18,134 @@ Utilizamos no Projeto as seguintes tecnologias para fazer a API Back-end de tal 
 
 <br>
 
-- Java 
-- Spring Boot 
-- Hibernate 
-- Docker 
+- Java
+- Spring Boot
+- Hibernate
+-Docker
 - MySQL
-- Postman
+-Postman
 - Swagger
 
-## comandos para usar no Docker no projeto completo 
+## commands to use in Docker in the complete project
 
 ```bash
- docker run -d --name my-database-project --env-file .env -p 3306:3306 mysql:latest 
+ docker run -d --name my-database-project --env-file .env -p 3306:3306 mysql:latest
 ```
 
-- Construir a imagem:
+- Build the image:
 
 ```bash
 docker build -t my-mysql-image .
 ```
 
-- Cada vez que você altera o código da aplicação, precisa rebuildar a imagem com:
+- Every time you change the application code, you need to rebuild the image with:
 
 ```bash
 docker-compose build
 ```
 
-- Rodar um container baseado na imagem criada:
+- Run a container based on the created image:
 
 ```bash
-docker run -d --name my-database -p 3306:3306 my-mysql-image 
+docker run -d --name my-database -p 3306:3306 my-mysql-image
 ```
-- Verificar se o container está rodando:
+- Check if the container is running:
 
 ```bash
 docker ps -a
 ```
 
-- Usando para acessa o MySQL dentro do Terminal do docker
+- Using to access MySQL inside the docker Terminal
 
 ```bash
 docker exec -it mysql mysql -u root -p
 ```
 
-- Comando para criar o docker-compose 
+- Command to create docker-compose
 
 ```bash
 docker-compose up -d
 ```
 
-- Iniciar os Serviços: Execute o comando:
+- Start the Services: Run the command:
 
 ```bash
 docker-compose up --build
 ```
 
-- URL da requisicao para a documentacao do Swagger 
+- Request URL for Swagger documentation
 
 ```bash
 http://localhost:8080/swagger-ui.html
 ```
 
-- URL normal da aplicacao 
+- Normal URL of the application
 
 ```bash
 http://localhost:8080/
 ```
 
-- Construir a Imagem Docker: Execute o comando abaixo no terminal onde está o Dockerfile:
+- Build the Docker Image: Run the command below in the terminal where the Dockerfile is:
 
 ```bash
 docker build -t assistenciawebsistema .
 ```
 
-- Executar o Container: Execute o seguinte comando para rodar o container:
+- Run the Container: Run the following command to run the container:
 
 ```bash
 docker run -p 8080:8080 assistenciawebsistema
 ```
 
-- Fazendo um Rebuild do projeto 
+- Rebuilding the project
 
 ```bash
-docker build -t assistenciawebsistema:latest .
-```
+docker build -t assistenciawebsistema:latest . ```
 
-- Explicando que no application.properties, você pode configurar o Springdoc para servir a documentação da API:
+- Explaining that in application.properties, you can configure Springdoc to serve API documentation:
 
 ```bash
 springdoc.api-docs.enabled=true
 springdoc.swagger-ui.enabled=true
 ```
 
-- Comandos para Subir os Ambientes
-- Para Desenvolvimento: Use o arquivo .env.dev para carregar as variáveis de ambiente:
+- Commands to Upload Environments
+- For Development: Use the .env.dev file to load the environment variables:
 
 ```bash
 docker-compose --env-file .env.dev up
 ```
 
-- Para Produção: Use o arquivo .env.prod - - para carregar as variáveis de ambiente:
+- For Production: Use the .env.prod file - - to load the environment variables:
 
 ```bash
 docker-compose --env-file .env.prod up
 ```
 
-- Execute o comando abaixo no diretório do projeto para verificar se o JAR é gerado corretamente:
+- Run the command below in the project directory to check if the JAR is generated correctly:
 
 ```bash
 ./mvnw clean package
 ```
 
-- Após o comando acima, o JAR deve ser gerado em target/. Teste localmente:
+- After the above command, the JAR must be generated in target/. Test locally:
 
 ```bash
 java -jar target/assistenciawebsistema-0.0.1-SNAPSHOT.jar
 ```
 
-- O Maven já executa uma limpeza automática do diretório target ao rodar o comando ./mvnw clean package, mas você pode garantir a remoção manual:
+- Maven already performs an automatic cleanup of the target directory when running the command ./mvnw clean package, but you can ensure manual removal:
 
 ```bash
 ./mvnw clean
 ```
-- Construir a imagem:
+- Build the image:
 
 ```bash
 docker build -t spring-boot-app .
 ```
 
-- Rodar o contêiner:
+- Run the container:
 
 ```bash
 docker run --env-file .env.prod -p 4425:8080 --name spring-boot-app spring-boot-app
