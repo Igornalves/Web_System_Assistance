@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.maizenatv.assistenciawebsistema.services.CustomerService;
 
 @Controller
-@RestController
+@RestController // pois ele faz com que os métodos retornem apenas texto ou JSON
 public class Rotas {
 
     @Autowired
     private CustomerService viaCepService;
 
-    @GetMapping("/")
+    @GetMapping("/rotateste")
     public String GetRota(){
         return "Olá coisas novas";
     }
