@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,12 +23,16 @@ public class Equipamentos {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(columnDefinition = "TEXT")
     private String modelo;
 
+    @Column(columnDefinition = "TEXT")
     private String marca;
 
+    @Column(columnDefinition = "TEXT")
     private String numero_serie;
 
+    @Column(columnDefinition = "TEXT")
     private String garantia_expiracao;
 
     @CreationTimestamp

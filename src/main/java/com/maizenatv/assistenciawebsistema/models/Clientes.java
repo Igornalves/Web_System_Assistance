@@ -28,12 +28,14 @@ public class Clientes {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(columnDefinition = "TEXT")
     private String nome; 
 
     @NotBlank(message = "Esse campo e obrigatorio")
     @Email(message = "o campo deve ter um email valido")
     private String email;
 
+    @Column(columnDefinition = "TEXT")
     private String telefone; 
 
     @NotBlank(message = "Esse campo e obrigatorio")
@@ -42,6 +44,7 @@ public class Clientes {
     @NotBlank(message = "Esse campo e obrigatorio")
     private String cep; 
 
+    @Column(columnDefinition = "TEXT")
     private String endereco;
 
     @Lob
