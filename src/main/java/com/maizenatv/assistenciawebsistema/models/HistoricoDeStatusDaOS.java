@@ -1,5 +1,6 @@
 package com.maizenatv.assistenciawebsistema.models;
 
+import java.util.Date;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -35,5 +36,5 @@ public class HistoricoDeStatusDaOS {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "data_alteracao")
-    private Data data_alteracao;
+    private Date data_alteracao;
 }

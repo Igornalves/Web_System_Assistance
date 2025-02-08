@@ -3,9 +3,9 @@ spring:
     name: assistenciawebsistema
 
   datasource:
-    url: jdbc:mysql://localhost:3307/assistenciaweb
+    url: jdbc:mysql://localhost:3306/assistenciaweb
     username: root
-    password: root
+    password: 08901
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
