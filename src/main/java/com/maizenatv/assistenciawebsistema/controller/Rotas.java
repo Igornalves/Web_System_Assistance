@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.maizenatv.assistenciawebsistema.services.CustomerService;
 
+
 // @Controller
 @RestController // pois ele faz com que os métodos retornem apenas texto ou JSON
 public class Rotas {
@@ -24,4 +25,20 @@ public class Rotas {
     public Object buscarEndereco(@PathVariable String cep) {
         return viaCepService.buscarEnderecoPorCep(cep);
     }
+
+    // @PostMapping("/criandoclientes")
+    // public String postMethodName(@RequestBody String entity) {
+    //     //TODO: process POST request
+        
+    //     return entity;
+    // }
+
+    // @PostMapping("/criandotecnico")
+    // public String postMethodName(@RequestBody String entity) {
+    //     //TODO: process POST request
+        
+    //     return entity;
+    // }
+    
+    
 } 
